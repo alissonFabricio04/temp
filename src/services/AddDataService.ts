@@ -1,18 +1,20 @@
-import prismaClient from '../prisma/';
+import { prisma } from '../prisma/'
 
 interface IAddDataService {
+    id: number
     name: string
-    phone: string
-    isClient: boolean
+    creditsWallet: number
+    suite: string
 }
 
 class AddDataService {
-    async execute({ name, phone, isClient = false }: IAddDataService) {
-        return await prismaClient.Client.create({
+    async execute({ id, name, creditsWallet, suite }: IAddDataService) {
+        return await prisma.client.create({
             data: {
+                id,
                 name,
-                phone,
-                isClient
+                creditsWallet,
+                suite
             }
         })
     }

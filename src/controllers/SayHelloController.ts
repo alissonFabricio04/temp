@@ -1,10 +1,16 @@
+import { prisma } from '../prisma/'
 import { Request, Response } from 'express'
 
 class SayHelloController {
     async handle(request: Request, response: Response) {
-        const result = 'Hello!'
+        const resultSelectDb = await prisma.client.findMany({
+            take: 1,
+            orderBy: {
+                created_at: "desc"
+            }
+        })
 
-        return response.json(result)
+        return response.json(resultSelectDb)
     }
 }
 
