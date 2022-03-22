@@ -3,10 +3,10 @@ import { Request, Response } from 'express'
 
 class SayHelloController {
     async handle(request: Request, response: Response) {
+        const suite = request.params.suite
         const resultSelectDb = await prisma.client.findMany({
-            take: 1,
-            orderBy: {
-                created_at: "desc"
+            where: {
+                suite: suite
             }
         })
 

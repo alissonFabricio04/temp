@@ -1,15 +1,15 @@
 import { prisma } from '../prisma/'
 
 interface IAddDataService {
-    id: number
+    suite: string
     credits: number // creditsWallet
 }
 
 class UpdateDataService {
-    async execute({ id, credits }: IAddDataService) {
+    async execute({ suite, credits }: IAddDataService) {
         return await prisma.client.update({
             where: {
-                id: id,
+                suite: suite,
             },
             data: {
                 creditsWallet: credits,
